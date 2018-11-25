@@ -25,11 +25,21 @@ namespace webApp.Controllers
 
         public async Task<IActionResult> Contact()
         {
-            var runner = new Doer();
-            var repo = await runner.CreateAndRewind();
-            ViewData["Message"] = "Your contact page.";
+//            var runner = new Doer();
+//            var repo = await runner.CreateAndRewind();
+//            ViewData["Message"] = "Your contact page.";
 
             return View();
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Go(string login, string pwd)
+        {
+            var runner = new Doer();
+            var repo = await runner.CreateAndRewind(login, pwd);
+            ViewData["Message"] = "Your contact page.";
+
+            return View("Contact");
         }
 
         public IActionResult Privacy()
