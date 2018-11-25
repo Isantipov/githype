@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using webApp.Models;
+using webApp.Services;
 
 namespace webApp.Controllers
 {
@@ -22,8 +23,10 @@ namespace webApp.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public async Task<IActionResult> Contact()
         {
+            var runner = new GitRunner();
+            var repo = await runner.CreateAndRewind();
             ViewData["Message"] = "Your contact page.";
 
             return View();
