@@ -5,6 +5,12 @@ using Octokit;
 
 namespace webApp.Services
 {
+    public enum Themes
+    {
+        Bitcoin,
+        Ai,
+        All
+    }
     public class Doer
     {
         public async Task<Repository> CreateAndRewind(string login, string pwd)

@@ -33,7 +33,7 @@ namespace webApp.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> Go(string login, string pwd)
+        public async Task<IActionResult> Go(string login, string pwd, Themes theme)
         {
             var runner = new Doer();
             var repo = await runner.CreateAndRewind(login, pwd);

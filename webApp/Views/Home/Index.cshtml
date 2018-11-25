@@ -1,4 +1,5 @@
-﻿@{
+﻿@using webApp.Services
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -54,12 +55,17 @@
 </div>
 
 <div class="row">
-    @using (Html.BeginForm("Go", "Home", FormMethod.Post)) { 
-        @Html.ValidationSummary(true);
+    <br />
+    @using (Html.BeginForm("Go", "Home", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        ;
 
         @:Enter github login :- @Html.TextBox("login")
         @:Enter github password:- @Html.Password("pwd")
-        <input type="submit" value="Submit" />
+        @:Bitcoin,Ai,All? :- @Html.TextBox("theme")
+
+        <input type="submit" value="Submit"/>
 
     }
     <h3 style="color: red; size: 32pt">@ViewData["Message"]</h3>
