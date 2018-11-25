@@ -16,10 +16,15 @@ namespace webApp.Services
 
             Repository r = await client.Repository.Create(new NewRepository($"fake-test-{new Random().Next()}"));
             var driver = new GitDriver();
-            driver.CloneAndUnwind(r.GitUrl);
+            driver.CloneAndUnwind(r.SvnUrl);
             
 
             return r;
         }
+
+        public static string UserName { get; } = "hypo-test";
+        public static string Password { get; } = "Thi7tael3ojoh";
     }
+    
+    
 }

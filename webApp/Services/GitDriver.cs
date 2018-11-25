@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using LibGit2Sharp;
+using LibGit2Sharp.Handlers;
 
 namespace webApp.Services
 {
@@ -26,6 +27,16 @@ namespace webApp.Services
 
             var newRemote = repo.Network.Remotes.Add("new", newRepoUrl);
             
+            PushOptions options = new PushOptions();
+            options.CredentialsProvider = new CredentialsHandler(
+                (url, usernameFromUrl, types) =>
+                    new UsernamePasswordCredentials()
+                    {
+                        Username = Doer.UserName,
+                        Password = Doer.Password
+                    });
+
+            repo.Network.Push(newRemote, "refs/heads/master", options);
         }
         
         public static CommitRewriteInfo ThisUser(Commit commit)
