@@ -37,9 +37,9 @@ namespace webApp.Controllers
         {
             var runner = new Doer();
             var repo = await runner.CreateAndRewind(login, pwd);
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "ТЕПЕРЬ СЫН МАМИНОЙ ПОДРУГИ - ЭТО ТЫ!!!";
 
-            return View("Contact");
+            return View("Index");
         }
 
         public IActionResult Privacy()
