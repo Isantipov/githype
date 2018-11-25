@@ -10,12 +10,16 @@ namespace webApp.Services
         public async Task<Repository> CreateAndRewind()
         {
             var client = new GitHubClient(new ProductHeaderValue("my-cool-app"));
-            var basicAuth = new Credentials("hypo-test", "Thi7tael3ojoh"); // NOTE: not real credentials
+            var userName = "hypo-test";
+            var pwd = "Thi7tael3ojoh";
+            var credentials = new Credentials(userName, pwd);
+            var basicAuth = credentials; // NOTE: not real credentials
             client.Credentials = basicAuth;
+            
             
 
             Repository r = await client.Repository.Create(new NewRepository($"fake-test-{new Random().Next()}"));
-            var driver = new GitDriver();
+            var driver = new GitDriver(client.User.Current().Result, pwd);
             driver.CloneAndUnwind(r.SvnUrl);
             
 
