@@ -5,7 +5,7 @@ using Octokit;
 
 namespace webApp.Services
 {
-    public class GitRunner
+    public class Doer
     {
         public async Task<Repository> CreateAndRewind()
         {
@@ -15,9 +15,9 @@ namespace webApp.Services
             
 
             Repository r = await client.Repository.Create(new NewRepository($"fake-test-{new Random().Next()}"));
-            var dir = Path.Combine(Path.GetTempPath() + Guid.NewGuid().ToString("D"));
+            var driver = new GitDriver();
+            driver.CloneAndUnwind(r.GitUrl);
             
-            LibGit2Sharp.Repository.Clone("https://github.com/libgit2/libgit2sharp.git", dir);
 
             return r;
         }

@@ -25,7 +25,7 @@ namespace webApp.Controllers
 
         public async Task<IActionResult> Contact()
         {
-            var runner = new GitRunner();
+            var runner = new Doer();
             var repo = await runner.CreateAndRewind();
             ViewData["Message"] = "Your contact page.";
 
