@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using Octokit;
 
@@ -14,6 +15,10 @@ namespace webApp.Services
             
 
             Repository r = await client.Repository.Create(new NewRepository($"fake-test-{new Random().Next()}"));
+            var dir = Path.Combine(Path.GetTempPath() + Guid.NewGuid().ToString("D"));
+            
+            LibGit2Sharp.Repository.Clone("https://github.com/libgit2/libgit2sharp.git", dir);
+
             return r;
         }
     }

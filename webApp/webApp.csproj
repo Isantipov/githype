@@ -5,6 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="LibGit2Sharp">
+          <Version>0.25.3</Version>
+        </PackageReference>
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Octokit">
           <Version>0.32.0</Version>
